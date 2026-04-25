@@ -98,5 +98,76 @@ When building a photo-sharing app, here's how the concerns are divided:
 
 *Conversely, a System dsign requirement for extremenly low latency might push the Software Architecture towards a mmore performant, through more complex, internal design.*
 
+# Monolithic vs Microservices Architecture
 
+### Monolithic Architecture
+
+A **monolithic architecture** is the traditional model of building an application as a single, indivisible unit. All components, from the user interface and business logic to the data access layer, are developed, deployed, scaled together.
+
+![alt text](image-4.png)
+
+For early-stage products or small applications, this approach is often ideal. Its primary benifits include:
+- **Simplicity in development**: A unified codebase in a single repository makes it easy to set up, write code and test.
+- **Ease of deployment**: The entire application is deployed as a single artifact, simplifying the release process.
+- **Straighforward debugging**: Since all code runs within a single process, tracing a request or bug does not involve inter-service communication, which simplifies debugging compared to distributed systems. However, as the monolith grows, overall complexity may still make debugging challenging.
+
+*The simplicity of a monolithic deployment is one of its greatest initial strengths. A single `git push` can trigger a build and deploy the entire application, which is a powefful advantage for small teams focussed on rapi iteration.*
+
+The limitations of a classic monolith do not always necessite a complete rewrite. A more strcutured, intermediate step can often provide the needed flexibility without the full complexity of distributed systems. This approack is known as the modular monolith.
+
+
+### Modular monoliths (structured flexibility)
+
+A modualr monolith is an evolution of the traditional monolith.
+
+It remains a single deployable unit but is interanlly stured into disctinct, independent modules. each modules is responsible for a specific business domain, like user management, payments or inventory. While they share the sam runtime and database, they communicate through well-defines, internal APIs or interfaces.
+
+![alt text](image-5.png)
+
+The primary goal is to enforce logical boundaries within the codebase, achieving a strong seperation of concerns. This is similar to organizing a single-room restaurant into designated sections, including a kitchen area, a dining area and a payment counter, each with clear responsibilities, all within the same building.
+
+Key advantages over a classic monolith include:
+- **Imporved codebase organization**: The system is easier to navigate and understand, as code related to a specific domain is grouped together.
+- **Better team scaling**: Different teams can work on seperate modules with less risk of interfering with each other's work.
+- **Easier testing**: Modules can be tested in isolation more effectively.
+- **Paves the way for microservices**: If needed, a well-defined module can be more easily extracted and turened into an independent microservice later.
+
+*All modules are deployed together, so a failure in one modules can potentially bring down the entire application. There is also a risk that developers will bypass the defined interfaces and create hidden dependencies between modules, thereby undermining the architecture.*
+
+*A key discipline for maintaining a modular monolith is to prevent direct data access between modules. One module should never directly query another module’s database tables, it must always go through its public API.*
+
+### Microservices architecture
+
+In a **microservices architecture**, an application is broken down into a collection of small, autonomous services.
+
+Each service runs independently and communicates with others over a network, typically using APIs. This is akin to replacing a single large restaurant with a food court, where each stall operated as an independent business.
+
+Instead of containing all responsibilities in a single monolith, microservices split them across multiple services.
+
+![alt text](image-6.png)
+
+This architectural style offers significant benefits, which is why companies like Netflix and Uber famously adopted it to manage their massive scale.
+- **Independent deployment** - Teams can deploy their services on their own schedules, without needing to coordinate with other teams.
+- **Technology freedon**: Each service can be built with the programming language and database best suited for its own specific task.
+- **Improved fault isolation**: A failure in one service does not necessarily bring down the entire application, improving overall resilience.
+- **Granular scalability**: Individual services can be scaled independently based on their specific resource needs.
+
+However, these benefits come with a steep increase in complexity. Moving from a single system to a network of services introduces a new set of challenges that must be merged, such as:
+- **Inter-service communication**: Services require a reliable method of communication over an unreliable network.
+- **Data management**: Maintaining data consistency across multiple services is a complex task. This often involves concepts like eventual consistency.
+- **Operation overhead**: Deploying, monitoring, and debugging a distributed system rquires sophisticated tools and expertise in areas suach as service discovery and distributed tracing.
+
+*One of the most common System Design mistake is premature optimization. Adopting microservices too early can cripple a startup with oiperational overhead before it even finds product-market fit.*
+
+### Architecture Comparison
+
+| **Feature** | **Monolith** | | **Modular Monolith** | **Microservices** |
+|---|---|---|---|
+| **Deployment** | Single Unit | Single Unit | Multiple, independent units |
+| **Coupling** | Single, large codebase | Single codebase, logically seperated modules | Multiple, smaller codebases per service |
+| **Coupling** | Tightly coupled | Loosely coupled modules, but tightly deployed | Very loosely couples services |
+| **Scalability** | Scale the entire application | Scale the entire application | Scale individual services independently |
+| **Operational Complexity** | Low | Low to medium | High |
+| **Team Dynamics** | One large team, or team with high coordination | Teams can own modules, but releases are coupled | Small, autonomous teams can own and deploy services |
+| **Technology Stack** | Single, unified stack | Single, unified stack | Polyglot (different stacks for different services) |
 
