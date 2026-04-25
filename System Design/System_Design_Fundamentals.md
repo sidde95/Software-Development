@@ -161,7 +161,7 @@ However, these benefits come with a steep increase in complexity. Moving from a 
 
 ### Architecture Comparison
 
-| **Feature** | **Monolith** | | **Modular Monolith** | **Microservices** |
+| **Feature** | **Monolith** | **Modular Monolith** | **Microservices** |
 |---|---|---|---|
 | **Deployment** | Single Unit | Single Unit | Multiple, independent units |
 | **Coupling** | Single, large codebase | Single codebase, logically seperated modules | Multiple, smaller codebases per service |
