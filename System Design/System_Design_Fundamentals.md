@@ -1,6 +1,6 @@
 # System Design Fundamentals
 
-> 📖 Notes from: [Grokking System Design Fundamentals – Monolithic vs Microservices](https://www.educative.io/courses/grokking-system-design-fundamentals/monolithic-vs-microservices-architecture)
+> 📖 Notes from: [Grokking System Design Fundamentals – Monolithic vs Microservices]([https://www.educative.io/courses/grokking-system-design-fundamentals/monolithic-vs-microservices-architecture](https://www.educative.io/courses/grokking-system-design-fundamentals))
 
 ---
 
