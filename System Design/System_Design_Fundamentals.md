@@ -36,9 +36,9 @@ Without a deliberate architectural strategy, a system that works for 1,000 users
 
 ## Common Architectural Pattern
 
-![Common Architecture Pattern](image-1.png)
+![image.png](image.png)
 
-*A load balancer distributes incoming traffic, multiple servers handle requests in parallel, a cache accelerates data access, and a replicated database ensures data remains durable and available.*
+![image-1.png](image-1.png)
 
 ---
 
@@ -52,7 +52,7 @@ System Design is a collaborative discipline — not owned by a single "architect
 - **Site Reliability Engineers (SREs)**: Advocate for monitoring, automated failover, and disaster recovery
 - **Product Engineers**: Provide user experience constraints that drive trade-offs (e.g., strong vs. eventual consistency)
 
-![System Design across roles](image-2.png)
+![image-2.png](image-2.png)
 
 ---
 
@@ -63,7 +63,7 @@ These two terms are related but address different layers:
 - **System Design** — the high-level view: hardware, software, networks, and how all components interact at scale
 - **Software Architecture** — a subset of System Design focused on the *internal structure* of the software: how code is organized into modules, how they interact, and what patterns are applied
 
-![System Design vs Software Architecture](image-3.png)
+![image-3.png](image-3.png)
 
 **Example — a photo-sharing app:**
 
@@ -84,7 +84,7 @@ These two terms are related but address different layers:
 
 A **monolithic architecture** builds the entire application — UI, business logic, and data access — as a single, indivisible unit.
 
-![Monolithic Architecture](image-4.png)
+![image-4.png](image-4.png)
 
 **Best for:** Early-stage products and small teams.
 
@@ -99,7 +99,7 @@ A **monolithic architecture** builds the entire application — UI, business log
 
 A **modular monolith** stays as one deployable unit but is internally structured into distinct, independent modules — each owning a specific business domain (users, payments, inventory).
 
-![Modular Monolith](image-5.png)
+![image-5.png](image-5.png)
 
 **Key rule:** One module should **never** directly query another module's database tables — always go through defined interfaces.
 
@@ -117,7 +117,7 @@ A **modular monolith** stays as one deployable unit but is internally structured
 
 In a **microservices architecture**, an application is broken into small, autonomous services. Each runs independently and communicates via APIs over a network.
 
-![Microservices Architecture](image-6.png)
+![image-6.png](image-6.png)
 
 **Benefits:**
 - **Independent deployment**: Teams deploy on their own schedule
